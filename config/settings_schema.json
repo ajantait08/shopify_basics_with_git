@@ -13,7 +13,7 @@
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "t:settings_schema.logo.settings.logo_image.label"
+        "label": "t:settings_schema.logo.settings.logo.label"
       },
       {
         "type": "range",

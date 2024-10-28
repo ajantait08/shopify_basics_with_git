@@ -23,14 +23,29 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      {{ section.settings.menu }}
+
       <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav mr-auto">
-          <a href="index.html" class="nav-item nav-link active">Home</a>
-          <a href="product-list.html" class="nav-item nav-link">Products</a>
-          <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-          <a href="cart.html" class="nav-item nav-link">Cart</a>
-          <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-          <a href="my-account.html" class="nav-item nav-link">My Account</a>
+          {% for link in linklists['main-menu'].links -%}
+            <a
+              href="{{ link.url }}"
+              class="
+                nav-item nav-link
+                {% if link.title == "Vaginal Health" %} active {% endif %}
+              "
+            >
+              {{- link.title -}}
+            </a>
+          {%- endfor %}
+          {% comment %}
+            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="product-list.html" class="nav-item nav-link">Products</a>
+            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
+            <a href="cart.html" class="nav-item nav-link">Cart</a>
+            <a href="checkout.html" class="nav-item nav-link">Checkout</a>
+            <a href="my-account.html" class="nav-item nav-link">My Account</a>
+          {% endcomment %}
         </div>
       </div>
     </nav>
@@ -73,7 +88,7 @@
 <!-- Bottom Bar End -->
 {% schema %}
 {
-  "name": "Header",
+  "name": "header",
   "settings": [
     {
       "id": "email",
@@ -92,6 +107,11 @@
       "id": "logo",
       "type": "image_picker",
       "label": "Logo Image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.header.settings.menu.label"
     }
   ]
 }
